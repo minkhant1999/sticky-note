@@ -8,7 +8,7 @@ var noteContainer = document.querySelector('.note-container');
 
 var clearBtn = document.querySelector('.clear');
 var addBtn = document.querySelector('.add');
-
+/*var date =document.getElementById("date").innerHTML = date;
 /*  add event listeners to buttons */
 
 addBtn.addEventListener('click', addNote);
@@ -37,6 +37,7 @@ function initialize() {
 /* Add a note to the display, and storage */
 
 function addNote() {
+  var date = new Date();
   var noteTitle = inputTitle.value;
   var noteBody = inputBody.value;
   var gettingItem = browser.storage.local.get(noteTitle);
@@ -45,7 +46,7 @@ function addNote() {
     if(objTest.length < 1 && noteTitle !== '' && noteBody !== '') {
       inputTitle.value = '';
       inputBody.value = '';
-      storeNote(noteTitle,noteBody);
+      storeNote(noteTitle,noteBody,date);
     }
   }, onError);
 }
@@ -70,7 +71,7 @@ function displayNote(title, body) {
   var notePara = document.createElement('p');
   var deleteBtn = document.createElement('button');
   var clearFix = document.createElement('div');
-
+  
   note.setAttribute('class','note');
 
   noteH.textContent = title;
